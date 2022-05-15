@@ -4,7 +4,7 @@
 
 This script for the joke! Python 3 with writed. <br>
 Enter the messages you want to send. <br>
-And sending!.. 
+And sending!.. <br>
 <b>Not: Please mail addres open 3'rd software support.</b>
 <br>
 <h2>How to Run?</h2>
