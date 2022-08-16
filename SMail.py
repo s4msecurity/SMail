@@ -16,39 +16,54 @@ print("-------------------------------------------------------------------------
 print()
 
 print("""
-
  )  ____) |        |    /  \    (_    _) \   |    
 (  (___   |  |\/|  |   /    \     |  |    |  |    
  \___  \  |  |  |  |  /  ()  \    |  |    |  |    
  ____)  ) |  |  |  | |   __   |  _|  |_   |  |__  
 (      (__|  |__|  |_|  (__)  |_(      )_/      )_
-
 """)
 print("SMail spam bot version 1.0\nAny illegal use belongs to the user.")
 print()
 
 say = 1
 sy = 1
+
+
+
 def start():
     global say
 
-    account = input("["+str(sy)+"]"+"Sender's gmail address: ")
-    password = input("["+str(sy)+"]"+"Sender's mail password: ")
-    print()
-    to = input("Recipient's e-mail address: ")
+    smtpserver = input("[!] Chooise server Yandex[1] or Google[2]\n[*] Select 1 or 2 for chooise : ")
+
+    if smtpserver == "2":
+        print("[!] Warning, Google not supported 3'rd party software.")
+        x = input("[?] Would you like to continue anyway? [Y/y for yes, N/n for no]: ")
+
+        if x == "N" or x == "n":
+            print("Application exit.\nGoodbye :P")
+            sys.exit(1)
+        elif x == "Y" or x =="y":
+            print("---------------------------------------------------------------------------------\n[!] Continued")
+        else:
+            print("[!] Please enter Y,N, try again that program.")
+            start()
+
+    account = input("[*] Sender's mail address: ")
+    password = input("[*] Sender's mail password: ")
+    to = input("[*] Recipient's e-mail address: ")
+    number = int(input("[*] How many e-mails will you send?: "))
+
     print("---------------------------------------------------------------------------------")
-    number = int(input("How many e-mails will you send?: "))
-    server = smtplib.SMTP('smtp.gmail.com', 587)
+    
+    if smtpserver == "1":
+        server = smtplib.SMTP_SSL('smtp.yandex.com.tr',465)
+    elif smtpserver == "2":    
+        server = smtplib.SMTP('smtp.gmail.com',587)
+        server.starttls()
     server.ehlo()
-    server.starttls()
 
-    #Başlama kısmı burası.
-
-    print("Starting...")
-    print()
-
-
-
+    #Starting in here.
+    print("Starting...")    
     while say <= number:
         subject = random.choice(konular)
         body = random.choice(konular)
